@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Star Marketing | Email Marketing Services</title>
+  <meta name="description" content="A Star Marketing offers luxury email marketing flows and campaigns designed to increase revenue, retention, and trust." />
+
+  <style>
+    :root {
+      --bg-light: #f6f6f6;
+      --text-light: #111111;
+      --card-light: #ffffff;
+
+      --bg-dark: #0b0b0e;
+      --text-dark: #f5f5f5;
+      --card-dark: #16161b;
+
+      /* refined luxury gold (NOT yellow) */
+      --accent: #b89b5e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    body.light header {
+      background: rgba(255,255,255,0.7);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .switch {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input { display: none; }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #777;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    input:checked + .slider {
+      background: var(--accent);
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(24px);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 120px 40px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .hero-boxes {
+      display: flex;
+      gap: 32px;
+    }
+
+    .box {
+      width: 280px;
+      height: 170px;
+      border-radius: 22px;
+      background: var(--card-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    body.light .box { background: var(--card-light); }
+
+    .box:hover { transform: translateY(-6px); }
+
+    section {
+      padding: 100px 40px;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      max-width: 700px;
+      opacity: 0.85;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card-dark);
+      padding: 30px;
+      border-radius: 22px;
+      transition: transform 0.25s ease;
+    }
+
+    body.light .card { background: var(--card-light); }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .price {
+      margin-top: 16px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .reviews { text-align: center; }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 50px;
+    }
+
+    .review {
+      background: var(--card-dark);
+      padding: 30px;
+      border-radius: 22px;
+      font-size: 0.95rem;
+    }
+
+    body.light .review { background: var(--card-light); }
+
+    .stars {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 1rem;
+      display: block;
+    }
+
+    footer {
+      padding: 50px 20px;
+      text-align: center;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-boxes { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">A Star Marketing</div>
+  <label class="switch">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+  </label>
+</header>
+
+<section class="hero">
+  <h1>Luxury Email Marketing<br>That Drives Revenue</h1>
+  <div class="hero-boxes">
+    <div class="box" data-target="flows">Flows</div>
+    <div class="box" data-target="campaigns">Campaigns</div>
+  </div>
+</section>
+
+<section id="flows">
+  <h2>Flows</h2>
+  <p class="section-desc">Automated recurring email sequences triggered after a one-time purchase. Each flow consists of 12 professionally written emails.</p>
+
+  <div class="grid">
+    <div class="card"><h3>Welcome Flow</h3><p>Triggered when someone signs up to build trust and introduce your brand.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Abandoned Cart Flow</h3><p>Recovers lost revenue by reminding customers to complete checkout.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Post‑Purchase Flow</h3><p>Thank‑you emails, product education, and upsells after purchase.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Browse Abandonment Flow</h3><p>Re‑engages visitors who browsed but didn’t add to cart.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Win‑Back Flow</h3><p>Re‑engages inactive subscribers with offers and updates.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Customer Loyalty Flow</h3><p>Rewards repeat customers with exclusive perks.</p><div class="price">£499.99</div></div>
+    <div class="card"><h3>Review Request Flow</h3><p>Collects reviews and feedback post‑purchase.</p><div class="price">£499.99</div></div>
+  </div>
+</section>
+
+<section id="campaigns">
+  <h2>Campaigns</h2>
+  <p class="section-desc">High-quality monthly email campaigns sent with a recurring subscription.</p>
+
+  <!-- PRICING (TOP – ONLY PLACE) -->
+  <div class="grid" style="margin-bottom:50px;">
+    <div class="card"><h3>4 Emails / Month</h3><div class="price">£499.99 / month</div></div>
+    <div class="card"><h3>6 Emails / Month</h3><div class="price">£749.99 / month</div></div>
+    <div class="card"><h3>8 Emails / Month</h3><div class="price">£949.99 / month</div></div>
+  </div>
+
+  <!-- CAMPAIGN TYPES -->
+  <div class="grid">
+    <div class="card"><h3>Promotional Campaigns</h3><p>Announce sales, discounts, and offers.</p></div>
+    <div class="card"><h3>Seasonal / Holiday Campaigns</h3><p>Ramadan, Eid, Christmas, Black Friday, and more.</p></div>
+    <div class="card"><h3>Product Launch Campaigns</h3><p>Launch new products and collections.</p></div>
+    <div class="card"><h3>Newsletter Campaigns</h3><p>Regular brand updates and stories.</p></div>
+    <div class="card"><h3>Educational Campaigns</h3><p>Value-driven educational content.</p></div>
+    <div class="card"><h3>Re-Engagement Campaigns</h3><p>Win back inactive subscribers.</p></div>
+    <div class="card"><h3>Event-Based Campaigns</h3><p>Webinars, demos, and live events.</p></div>
+    <div class="card"><h3>Survey & Feedback Campaigns</h3><p>Collect customer feedback.</p></div>
+  </div>
+</section>
+
+<section class="reviews">
+  <h2>Reviews & Testimonials</h2>
+  <div class="review-grid">
+    <div class="review"><div class="stars">★★★★★</div>Created Klaviyo flows for both of our companies and did a fantastic job. We are continuing to work with them on campaigns.</div>
+    <div class="review"><div class="stars">★★★★★</div>We saw an enormous increase in revenue. Totally worth it.</div>
+    <div class="review"><div class="stars">★★★★★</div>Meticulously executed instructions and was very easy to work with.</div>
+    <div class="review"><div class="stars">★★★★★</div>Very professional, kind, and patient. Highly recommended.</div>
+    <div class="review"><div class="stars">★★★★★</div>Impressed with strategy and execution. Would highly recommend.</div>
+  </div>
+</section>
+
+<section id="contact" style="text-align:center; padding:100px 40px;">
+  <h2>Contact Us</h2>
+  <p>Email: <strong>contact@astarmarketing.com</strong></p>
+  <p>Phone: <strong>+44 0000 000000</strong></p>
+</section>
+
+<footer>
+  © 2026 A Star Marketing. All rights reserved.
+</footer>
+
+<script>
+  // THEME TOGGLE (GUARANTEED WORKING)
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('light');
+  });
+
+  // HERO BUTTON SCROLL (GUARANTEED WORKING)
+  document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', () => {
+      const id = box.getAttribute('data-target');
+      const target = document.getElementById(id);
+      const headerOffset = document.querySelector('header').offsetHeight;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
